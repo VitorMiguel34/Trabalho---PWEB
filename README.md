@@ -1,6 +1,6 @@
 # Trabalho---PWEB
 Membros:
 
-Pedro Marques dos Santos Lima
-Vitor Miguel Calheiros
-Victor Miguel Bezerra
+1. Pedro Marques dos Santos Lima
+2. Vitor Miguel Calheiros
+3. Victor Miguel Bezerra
