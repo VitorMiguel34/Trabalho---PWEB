@@ -1,5 +1,5 @@
 import Usuario from '../scripts/Sistema.js'
-import validarConfirmacaoDaSenha from '../scripts/Validacao.js'
+import Validaçao from '../scripts/Validacao.js'
 
 //Tenta pegar a lista de usuarios na local storage, se nao existir cria uma lista vazia
 let listaDeUsuarios = JSON.parse(localStorage.getItem("listaDeUsuarios")) || {}
