@@ -1,7 +1,7 @@
 
 export default class Validaçao{
 
-    validarConfirmacaoDaSenha(senha, confirmacaoDaSenha){
+    static ConfirmacaoDaSenha(senha, confirmacaoDaSenha){
 
         if(senha.trim() === confirmacaoDaSenha.trim()){
             return true
@@ -9,7 +9,7 @@ export default class Validaçao{
         return false
         }
 
-    validarMatricula(matricula){
+    static Matricula(matricula){
 
         if( (matricula.length == 10) && (matricula.slice(0, 3) == '202' )){
             return true 
@@ -17,17 +17,15 @@ export default class Validaçao{
         return false
         }
 
-    validarNome(nome){
+    static Nome(nome){
 
-        let validar = true
+        let static  = true
         for( let i of nome.spllit(' ') ){
 
             if (!(( i.trim() == i) && ( i[0].toUpperCase() == i[0]))){
-                validar = false
+                static  = false
             } 
-            return validar
+            return static 
         }
     }
-
-    validar
 }
