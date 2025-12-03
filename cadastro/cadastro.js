@@ -28,6 +28,7 @@ function cadastrarNovoUsuario(){
 
     let infosUsuario = pegarInformacoesDoUsuario()
 
+    //Esse bloco para baixo deverá passar pelas verificações
     let novoUsuario = new Usuario(
         infosUsuario["nome"],
         infosUsuario["email"],
