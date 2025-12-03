@@ -4,6 +4,7 @@ import Validaçao from '../scripts/Validacao.js'
 //Tenta pegar a lista de usuarios na local storage, se nao existir cria uma lista vazia
 let listaDeUsuarios = JSON.parse(localStorage.getItem("listaDeUsuarios")) || {}
 
+
 function pegarInformacoesDoUsuario(){
     let nomeUsuario = document.getElementById("inputNome").value 
     let emailUsuario = document.getElementById("inputEmail").value 
@@ -23,11 +24,11 @@ function pegarInformacoesDoUsuario(){
     return informacoesDoUSuario
 }
 
-
-
 function cadastrarNovoUsuario(){
+
     let infosUsuario = pegarInformacoesDoUsuario()
 
+    //Esse bloco para baixo deverá passar pelas verificações
     let novoUsuario = new Usuario(
         infosUsuario["nome"],
         infosUsuario["email"],
