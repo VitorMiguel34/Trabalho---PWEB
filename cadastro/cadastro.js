@@ -45,6 +45,7 @@ function cadastrarNovoUsuario(){
         listaDeUsuarios.push(novoUsuario)
         //Guarda a lista de usuarios atualizada no localStorage
         localStorage.setItem("listaDeUsuarios",JSON.stringify(listaDeUsuarios))
+
     }
 
     else{
