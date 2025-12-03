@@ -1,8 +1,9 @@
 import Usuario from '../scripts/Sistema.js'
-import validarConfirmacaoDaSenha from '../scripts/Validacao.js'
+import Validaçao from '../scripts/Validacao.js'
 
 //Tenta pegar a lista de usuarios na local storage, se nao existir cria uma lista vazia
-let listaDeUsuarios = JSON.parse(localStorage.getItem("listaDeUsuarios")) || []
+let listaDeUsuarios = JSON.parse(localStorage.getItem("listaDeUsuarios")) || {}
+
 
 function pegarInformacoesDoUsuario(){
     let nomeUsuario = document.getElementById("inputNome").value 
@@ -23,34 +24,25 @@ function pegarInformacoesDoUsuario(){
     return informacoesDoUSuario
 }
 
-function validarSenhaDoUsuario(senha, confirmacaoDaSenha){
-    if(senha.trim() === confirmacaoDaSenha.trim()){
-        return true
-    }
-    return false
-}
-
 function cadastrarNovoUsuario(){
+
     let infosUsuario = pegarInformacoesDoUsuario()
 
-    if(validarConfirmacaoDaSenha(infosUsuario["senha"],infosUsuario["confirmacaoDaSenha"])){
-        alert("Senha passou!")
-        let novoUsuario = new Usuario(
-            infosUsuario["nome"],
-            infosUsuario["email"],
-            infosUsuario["matricula"],
-            infosUsuario["CPF"],
-            infosUsuario["senha"]
-        )
-        listaDeUsuarios.push(novoUsuario)
+    let novoUsuario = new Usuario(
+        infosUsuario["nome"],
+        infosUsuario["email"],
+        infosUsuario["matricula"],
+        infosUsuario["CPF"],
+        infosUsuario["senha"])
+        
+
+        listaDeUsuarios[novoUsuario.matricula] = novoUsuario
+
         //Guarda a lista de usuarios atualizada no localStorage
         localStorage.setItem("listaDeUsuarios",JSON.stringify(listaDeUsuarios))
 
-    }
-
-    else{
-        alert("Senhas incompativeis!")
-    }
+        window.location.href = '../login/login.html'
+        //Direciona para info ao efetuar cadastro
     
 }
 
