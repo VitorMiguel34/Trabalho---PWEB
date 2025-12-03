@@ -1,4 +1,4 @@
-export default class Validaçao{
+export default class Validacao{
 
     static ConfirmacaoDaSenha(senha, confirmacaoDaSenha){
         
