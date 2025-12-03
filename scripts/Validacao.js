@@ -18,11 +18,11 @@ export default class Validaçao{
     static Nome(nome){
 
         let nomeValido = true
-        for( let i of nome.spllit(' ') ){
+        for( let i of nome.split(' ') ){
             if (!(( i.trim() == i) && ( i[0].toUpperCase() == i[0]))){
                 nomeValido  = false
             } 
-            return nomeValido
         }
+        return nomeValido
     }
 }
