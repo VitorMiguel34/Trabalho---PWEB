@@ -12,6 +12,9 @@ function pegarInformacoesDoUsuario(){
     let cpfUsuario = document.getElementById("inputCPF").value 
     let senhaUsuario = document.getElementById("inputSenha").value 
     let confirmacaoSenhaUsuario = document.getElementById("inputConfirmacaoSenha").value 
+    let turmaUsuario = document.getElementById("inputTurma").value
+    let serieUsuario = document.getElementById("escolhaSerie").value
+    let cursoUsuario = document.getElementById("escolhaCurso").value
 
     let informacoesDoUSuario = {
         "nome": nomeUsuario,
@@ -20,6 +23,9 @@ function pegarInformacoesDoUsuario(){
         "CPF": cpfUsuario,
         "senha": senhaUsuario,
         "confirmacaoDaSenha": confirmacaoSenhaUsuario,
+        "turma": turmaUsuario,
+        "serie": serieUsuario,
+        "curso": cursoUsuario
     }
     return informacoesDoUSuario
 }
@@ -28,22 +34,40 @@ function cadastrarNovoUsuario(){
 
     let infosUsuario = pegarInformacoesDoUsuario()
 
-    //Esse bloco para baixo deverá passar pelas verificações
-    let novoUsuario = new Usuario(
+    let valido = true
+
+    valido = Validacao.Geral(
         infosUsuario["nome"],
-        infosUsuario["email"],
         infosUsuario["matricula"],
         infosUsuario["CPF"],
-        infosUsuario["senha"])
+        infosUsuario["senha"],
+        infosUsuario["confirmacaoDaSenha"],
+        infosUsuario["turma"]
+    )
+
+    if (valido){
+    //Esse bloco para baixo deverá passar pelas verificações
+        let novoUsuario = new Usuario(
+            infosUsuario["nome"],
+            infosUsuario["email"],
+            infosUsuario["matricula"],
+            infosUsuario["CPF"],
+            infosUsuario["senha"],
+            infosUsuario["turma"],
+            infosUsuario["serie"],
+            infosUsuario["curso"])
         
+            listaDeUsuarios[novoUsuario.matricula] = novoUsuario
 
-        listaDeUsuarios[novoUsuario.matricula] = novoUsuario
+            //Guarda a lista de usuarios atualizada no localStorage
+            localStorage.setItem("listaDeUsuarios",JSON.stringify(listaDeUsuarios))
 
-        //Guarda a lista de usuarios atualizada no localStorage
-        localStorage.setItem("listaDeUsuarios",JSON.stringify(listaDeUsuarios))
+            alert('Usuário Cadastrado')
 
-        window.location.href = '../login/login.html'
-        //Direciona para info ao efetuar cadastro
+            window.location.href = '../login/login.html'
+            //Direciona para info ao efetuar cadastro
+
+    }
     
 }
 
