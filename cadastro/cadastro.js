@@ -1,25 +1,25 @@
 import Usuario from '../scripts/Sistema.js'
 import Validacao from '../scripts/Validacao.js'
 
-//Tenta pegar a lista de usuarios na local storage, se nao existir cria uma lista vazia
 let listaDeUsuarios = JSON.parse(localStorage.getItem("listaDeUsuarios")) || {}
 
-
 function pegarInformacoesDoUsuario(){
-    let nomeUsuario = document.getElementById("inputNome").value 
-    let emailUsuario = document.getElementById("inputEmail").value 
-    let matriculaUsuario = document.getElementById("inputMatricula").value 
-    let cpfUsuario = document.getElementById("inputCPF").value 
-    let senhaUsuario = document.getElementById("inputSenha").value 
-    let confirmacaoSenhaUsuario = document.getElementById("inputConfirmacaoSenha").value 
 
-    let informacoesDoUSuario = {
-        "nome": nomeUsuario,
-        "email": emailUsuario,
-        "matricula": matriculaUsuario,
-        "CPF": cpfUsuario,
-        "senha": senhaUsuario,
-        "confirmacaoDaSenha": confirmacaoSenhaUsuario,
+    const INPUTS = [
+        "inputNome",
+        "inputEmail",
+        "inputMatricula",
+        "inputCPF",
+        "inputSenha",
+        "inputConfirmacaoSenha"
+    ]
+    let informacoesDoUSuario = {}
+    let chave;
+
+    for(let id of INPUTS){
+        chave = id.slice(5)
+        chave = chave.toLowerCase()
+        informacoesDoUSuario[chave] = document.getElementById(id).value 
     }
     return informacoesDoUSuario
 }
@@ -33,17 +33,16 @@ function cadastrarNovoUsuario(){
         infosUsuario["nome"],
         infosUsuario["email"],
         infosUsuario["matricula"],
-        infosUsuario["CPF"],
-        infosUsuario["senha"])
+        infosUsuario["cpf"],
+        infosUsuario["senha"]
+    )
         
+    listaDeUsuarios[novoUsuario.matricula] = novoUsuario
 
-        listaDeUsuarios[novoUsuario.matricula] = novoUsuario
+    localStorage.setItem("listaDeUsuarios",JSON.stringify(listaDeUsuarios))
 
-        //Guarda a lista de usuarios atualizada no localStorage
-        localStorage.setItem("listaDeUsuarios",JSON.stringify(listaDeUsuarios))
-
-        window.location.href = '../login/login.html'
-        //Direciona para info ao efetuar cadastro
+    window.location.href = '../login/login.html'
+    //Direciona para info ao efetuar cadastro
     
 }
 
