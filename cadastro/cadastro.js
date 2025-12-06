@@ -1,11 +1,10 @@
 import Usuario from '../scripts/Usuario.js'
 import Validacao from '../scripts/Validacao.js'
 
-//Tenta pegar a lista de usuarios na local storage, se nao existir cria uma lista vazia
 let listaDeUsuarios = JSON.parse(localStorage.getItem("listaDeUsuarios")) || {}
 
-
 function pegarInformacoesDoUsuario(){
+
     let nomeUsuario = document.getElementById("inputNome").value 
     let emailUsuario = document.getElementById("inputEmail").value 
     let matriculaUsuario = document.getElementById("inputMatricula").value 
@@ -26,6 +25,7 @@ function pegarInformacoesDoUsuario(){
         "turno": turnoUsuario,
         "serie": serieUsuario,
         "curso": cursoUsuario
+
     }
     return informacoesDoUSuario
 }
@@ -40,6 +40,7 @@ function cadastrarNovoUsuario(event){
     let valido = Validacao.Geral(infosUsuario)
     if (valido){
     //Esse bloco para baixo deverá passar pelas verificações
+      
         let novoUsuario = new Usuario(
             infosUsuario["nome"],
             infosUsuario["email"],
@@ -50,15 +51,14 @@ function cadastrarNovoUsuario(event){
             infosUsuario["serie"],
             infosUsuario["curso"]
         )
-
-        listaDeUsuarios[novoUsuario.matricula] = novoUsuario
-
-        //Guarda a lista de usuarios atualizada no localStorage
-        localStorage.setItem("listaDeUsuarios",JSON.stringify(listaDeUsuarios))
-
-        window.location.href = '../login/login.html'
         
-        //Direciona para info ao efetuar cadastro
+    listaDeUsuarios[novoUsuario.matricula] = novoUsuario
+
+    localStorage.setItem("listaDeUsuarios",JSON.stringify(listaDeUsuarios))
+
+    window.location.href = '../login/login.html'
+        
+    //Direciona para info ao efetuar cadastro
 
     } 
     
