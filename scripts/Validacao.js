@@ -1,6 +1,5 @@
 export default class Validacao{
 
-
     static ConfirmacaoDaSenha(senha, confirmacaoDaSenha){
         
         if(senha.trim() === confirmacaoDaSenha.trim()){
