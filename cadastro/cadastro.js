@@ -1,4 +1,4 @@
-import Usuario from '../scripts/Sistema.js'
+import Usuario from '../scripts/Usuario.js'
 import Validacao from '../scripts/Validacao.js'
 
 //Tenta pegar a lista de usuarios na local storage, se nao existir cria uma lista vazia
@@ -12,7 +12,7 @@ function pegarInformacoesDoUsuario(){
     let cpfUsuario = document.getElementById("inputCPF").value 
     let senhaUsuario = document.getElementById("inputSenha").value 
     let confirmacaoSenhaUsuario = document.getElementById("inputConfirmacaoSenha").value 
-    let turmaUsuario = document.getElementById("inputTurma").value
+    let turnoUsuario = document.getElementById("escolhaTurno").value
     let serieUsuario = document.getElementById("escolhaSerie").value
     let cursoUsuario = document.getElementById("escolhaCurso").value
 
@@ -23,28 +23,21 @@ function pegarInformacoesDoUsuario(){
         "CPF": cpfUsuario,
         "senha": senhaUsuario,
         "confirmacaoDaSenha": confirmacaoSenhaUsuario,
-        "turma": turmaUsuario,
+        "turno": turnoUsuario,
         "serie": serieUsuario,
         "curso": cursoUsuario
     }
     return informacoesDoUSuario
 }
 
-function cadastrarNovoUsuario(){
+function cadastrarNovoUsuario(event){
+
+    //Bloqueia que a página reinicie ao clicar no botão
+    event.preventDefault()
 
     let infosUsuario = pegarInformacoesDoUsuario()
 
-    let valido = true
-
-    valido = Validacao.Geral(
-        infosUsuario["nome"],
-        infosUsuario["matricula"],
-        infosUsuario["CPF"],
-        infosUsuario["senha"],
-        infosUsuario["confirmacaoDaSenha"],
-        infosUsuario["turma"]
-    )
-
+    let valido = Validacao.Geral(infosUsuario)
     if (valido){
     //Esse bloco para baixo deverá passar pelas verificações
         let novoUsuario = new Usuario(
@@ -53,21 +46,21 @@ function cadastrarNovoUsuario(){
             infosUsuario["matricula"],
             infosUsuario["CPF"],
             infosUsuario["senha"],
-            infosUsuario["turma"],
+            infosUsuario["turno"],
             infosUsuario["serie"],
-            infosUsuario["curso"])
+            infosUsuario["curso"]
+        )
+
+        listaDeUsuarios[novoUsuario.matricula] = novoUsuario
+
+        //Guarda a lista de usuarios atualizada no localStorage
+        localStorage.setItem("listaDeUsuarios",JSON.stringify(listaDeUsuarios))
+
+        window.location.href = '../login/login.html'
         
-            listaDeUsuarios[novoUsuario.matricula] = novoUsuario
+        //Direciona para info ao efetuar cadastro
 
-            //Guarda a lista de usuarios atualizada no localStorage
-            localStorage.setItem("listaDeUsuarios",JSON.stringify(listaDeUsuarios))
-
-            alert('Usuário Cadastrado')
-
-            window.location.href = '../login/login.html'
-            //Direciona para info ao efetuar cadastro
-
-    }
+    } 
     
 }
 

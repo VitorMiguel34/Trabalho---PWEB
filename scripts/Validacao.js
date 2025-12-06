@@ -1,5 +1,6 @@
 export default class Validacao{
 
+
     static ConfirmacaoDaSenha(senha, confirmacaoDaSenha){
         
         if(senha.trim() === confirmacaoDaSenha.trim()){
@@ -19,12 +20,13 @@ export default class Validacao{
         }
 
 
-    static Nome(nome){
+    static Nome(nomeUsuario){
 
         let nomevalido = true
-        for( let i of nome.split(' ').filter(Boolean) ){
-            if (!(( i.trim() == i) && ( i[0].toUpperCase() == i[0]))){
-                nome  = false
+        for( let nome of nomeUsuario.split(' ')){
+            console.log(nome)
+            if (!(( nome.trim() == nome) && ( nome[0].toUpperCase() == nome[0]))){
+                nomevalido = false
             } 
         }
         return nomevalido
@@ -36,37 +38,34 @@ export default class Validacao{
 
     }
 
-    static Turma(turma){
+    static Email(email){
 
-        const TURMAS = [2, 3, 4, 5, 6, 7, 8, 9]
+        //Regex que testa se o email tem @().com
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regexEmail.test(email);
 
-        //Caso o primeiro digito seja das turmas acima e os tres primeiros digitos sao numeros
-        if (TURMAS.includes(parseInt(turma[0])) && !(isNaN(Number(turma.slice(0, 3))))){
-            return true
-        } 
-        return false
     }
 
-    static Geral(nome, matricula, cpf, senha, confirmarsenha, turma){
+    static Geral(infoUsuario){
 
-        if(!this.Nome(nome)){
-            alert("O nome deve ter iniciais minúsculas!")
+        if(!this.Nome(infoUsuario['nome'])){
+            alert("O nome deve ter iniciais maiúsculas!")
             return false
         }
-        if (!this.ConfirmacaoDaSenha(senha, confirmarsenha)){
+        if (!this.ConfirmacaoDaSenha(infoUsuario['senha'], infoUsuario['confirmacaoDaSenha'])){
             alert("As senhas devem ser iguais!")
             return false
         }
-        if (!this.Matricula(matricula)){
+        if (!this.Matricula(infoUsuario['matricula'])){
             alert("A matrícula deve começar com algum ano e ter 10 dígitos!")
             return false
         }
-        if (!this.CPF(cpf)){
+        if (!this.CPF(infoUsuario['CPF'])){
             alert("O CPF deve ter 11 dígitos!")
             return false
         }
-        if (!this.Turma(turma)){
-            alert('A turma deve ter o primeiro dígito referente ao seu curso!')
+        if (!this.Email(infoUsuario['email'])){
+            alert('O email deve ter @ e ter um domínio!')
             return false
         }
 

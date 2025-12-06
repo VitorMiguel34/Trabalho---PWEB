@@ -1,23 +1,22 @@
-
 export default class Usuario{
-    // REMOVIDO: #senha e #cpf
+    // removi #senha e #cpf
 
-    constructor(nome, email, matricula, cpf, senha, turma, serie, curso){
+    constructor(nome, email, matricula, cpf, senha, turno, serie, curso){
         this.nome = nome
         this.email = email
         this.matricula = matricula
         
-        // Mantemos como propriedades públicas (serializáveis)
+        // manti como público
         this.cpf = cpf
         this.senha = senha
         
         this.notas = []
-        this.turma = turma
+        this.turno = turno
         this.serie = serie
         this.curso = curso
     }
 
-    // REMOVIDO: getSenha() e getCpf()
+    // removi getSenha() e getCpf()
 
     calcularMedia(){
         let somaNotas = 0
