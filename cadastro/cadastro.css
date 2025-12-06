@@ -12,3 +12,9 @@ body {
     border-radius: 0.5rem;
     margin: 20px 0;
 }
+#botaoCadastro{
+    display: block;
+    margin: 0 auto;          
+    width: auto !important; 
+    min-width: 50%;
+}

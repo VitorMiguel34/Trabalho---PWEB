@@ -11,23 +11,18 @@ function pegarInformacoesDoUsuario(){
     let cpfUsuario = document.getElementById("inputCPF").value 
     let senhaUsuario = document.getElementById("inputSenha").value 
     let confirmacaoSenhaUsuario = document.getElementById("inputConfirmacaoSenha").value 
-    let turnoUsuario = document.getElementById("escolhaTurno").value
-    let serieUsuario = document.getElementById("escolhaSerie").value
-    let cursoUsuario = document.getElementById("escolhaCurso").value
+    let turmaUsuario = document.getElementById('inputTurma').value
 
-    let informacoesDoUSuario = {
+    let informacoesDoUsuario = {
         "nome": nomeUsuario,
         "email": emailUsuario,
         "matricula": matriculaUsuario,
         "CPF": cpfUsuario,
         "senha": senhaUsuario,
         "confirmacaoDaSenha": confirmacaoSenhaUsuario,
-        "turno": turnoUsuario,
-        "serie": serieUsuario,
-        "curso": cursoUsuario
-
+        "turma": turmaUsuario
     }
-    return informacoesDoUSuario
+    return informacoesDoUsuario
 }
 
 function cadastrarNovoUsuario(event){
@@ -47,9 +42,7 @@ function cadastrarNovoUsuario(event){
             infosUsuario["matricula"],
             infosUsuario["CPF"],
             infosUsuario["senha"],
-            infosUsuario["turno"],
-            infosUsuario["serie"],
-            infosUsuario["curso"]
+            infosUsuario['turma']
         )
         
     listaDeUsuarios[novoUsuario.matricula] = novoUsuario
@@ -59,7 +52,6 @@ function cadastrarNovoUsuario(event){
     window.location.href = '../login/login.html'
         
     //Direciona para info ao efetuar cadastro
-
     } 
     
 }
