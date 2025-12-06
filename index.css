@@ -1,3 +1,4 @@
+/* Fade-in suave */
 .fade-in {
     animation: fadeIn 0.9s ease-in-out;
 }
@@ -11,4 +12,25 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Melhorar tipografia do título */
+h1, h2, h3 {
+    letter-spacing: -0.5px;
+}
+
+/* Container central mais elegante */
+.container-lg.bg-white {
+    border: 1px solid #f0f0f0;
+}
+
+/* Deixar navbar com leve transparência quando rolar */
+.navbar {
+    backdrop-filter: blur(6px);
+}
+
+/* Remover margens extras do body */
+body {
+    padding: 0;
+    margin: 0;
 }
