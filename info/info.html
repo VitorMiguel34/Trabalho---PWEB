@@ -16,9 +16,9 @@
                 <i class="bi bi-mortarboard-fill me-2 text-warning"></i> Portal do Aluno
             </p>
             <!-- Botão de Sair alinhado à direita -->
-            <div class="d-flex">
+            <div class="d-flex me-2">
                 <a href="../index.html" class="btn btn-sm btn-outline-danger">
-                    <i class="bi bi-box-arrow-right me-1"></i> Sair
+                    <i class="bi bi-box-arrow-right"></i> Sair
                 </a>
             </div>
         </div>
@@ -50,12 +50,71 @@
                     <p id="cursoUsuario" class="fw-bold mb-0 text-dark"></p>
                 </div>
                 <div class="col-md-6">
-                    <p class="text-muted small mb-0">Turma/Série:</p>
+                    <p class="text-muted small mb-0">Turma:</p>
                     <p id="turmaUsuario" class="fw-bold mb-0 text-dark"></p>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="card shadow-sm mb-4 mt-4">
+        <div class="card-header bg-primary text-white fw-bold">
+            <i class="bi bi-journal-text me-2"></i> Boletim Acadêmico
+        </div>
+        
+        <div class="card-body p-0">
+            
+            <div class="table-responsive">
+                <table class="table table-hover mb-0"> 
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col" style="width: 20%;">Disciplina</th>
+                            <th scope="col" class="text-center">1ª trimestre</th>
+                            <th scope="col" class="text-center">2ª trimestre</th>
+                            <th scope="col" class="text-center">3ª trimestre</th>
+                            <th scope="col" class="text-center">Média Final</th>
+                            <th scope="col" class="text-center">Situação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Língua Portuguesa</th>
+                            <td class="nota-portugues text-center"></td>
+                            <td class="nota-portugues text-center"></td>
+                            <td class="nota-portugues text-center"></td>
+                            <td class="text-center fw-bold text-success" id="media-portugues"></td>
+                            <td class="text-center"><span class="badge rounded-pill bg-success fw-normal"></span></td>
+                        </tr>
+                        
+                        <tr>
+                            <th scope="row">Matemática</th>
+                            <td class="nota-matematica text-center"></td>
+                            <td class="nota-matematica text-center"></td>
+                            <td class="nota-matematica text-center"></td>
+                            <td class="text-center fw-bold text-danger" id="media-matematica"></td>
+                            <td class="text-center"><span class="badge rounded-pill bg-danger fw-normal"></span></td>
+                        </tr>
+                        
+                        <tr>
+                            <th scope="row">Física</th>
+                            <td class="nota-fisica text-center"></td>
+                            <td class="nota-fisica text-center"></td>
+                            <td class="nota-fisica text-center"></td>
+                            <td class="text-center fw-bold text-success" id="media-fisica"></td>
+                            <td class="text-center"><span class="badge rounded-pill bg-success fw-normal"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        
+        <div class="card-footer text-muted text-end small ">
+            <p class="mb-0">Nota Mínima para Aprovação: 6.0</p>
+        </div>
+
+    </div>
+
 </body>
 <script src="info.js" type="module"></script>
 </html>
