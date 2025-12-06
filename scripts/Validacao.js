@@ -1,6 +1,5 @@
 export default class Validacao{
 
-
     static ConfirmacaoDaSenha(senha, confirmacaoDaSenha){
         
         if(senha.trim() === confirmacaoDaSenha.trim()){
@@ -24,7 +23,6 @@ export default class Validacao{
 
         let nomevalido = true
         for( let nome of nomeUsuario.split(' ')){
-            console.log(nome)
             if (!(( nome.trim() == nome) && ( nome[0].toUpperCase() == nome[0]))){
                 nomevalido = false
             } 
@@ -44,6 +42,15 @@ export default class Validacao{
         const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return regexEmail.test(email);
 
+    }
+
+    static Turma(turma){
+
+        const TURNOS = ['1', '2']
+        const SERIES = ['1', '2', '3']
+        const CURSOS = ['2', '3', '4', '5', '6', '7', '9']
+
+        return CURSOS.includes(turma[0]) && TURNOS.includes(turma[1]) && SERIES.includes(turma[2])
     }
 
     static Geral(infoUsuario){
@@ -66,6 +73,10 @@ export default class Validacao{
         }
         if (!this.Email(infoUsuario['email'])){
             alert('O email deve ter @ e ter um domínio!')
+            return false
+        }
+        if (!this.Turma(infoUsuario['turma'])){
+            alert('A turma deve seguir o padrão [curso][turno][serie]!')
             return false
         }
 
