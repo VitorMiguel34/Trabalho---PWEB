@@ -1,48 +1,66 @@
-import Usuario from '../scripts/Sistema.js'
+import Usuario from '../scripts/Usuario.js'
 import Validacao from '../scripts/Validacao.js'
 
 let listaDeUsuarios = JSON.parse(localStorage.getItem("listaDeUsuarios")) || {}
 
 function pegarInformacoesDoUsuario(){
 
-    const INPUTS = [
-        "inputNome",
-        "inputEmail",
-        "inputMatricula",
-        "inputCPF",
-        "inputSenha",
-        "inputConfirmacaoSenha"
-    ]
-    let informacoesDoUSuario = {}
-    let chave;
+    let nomeUsuario = document.getElementById("inputNome").value 
+    let emailUsuario = document.getElementById("inputEmail").value 
+    let matriculaUsuario = document.getElementById("inputMatricula").value 
+    let cpfUsuario = document.getElementById("inputCPF").value 
+    let senhaUsuario = document.getElementById("inputSenha").value 
+    let confirmacaoSenhaUsuario = document.getElementById("inputConfirmacaoSenha").value 
+    let turnoUsuario = document.getElementById("escolhaTurno").value
+    let serieUsuario = document.getElementById("escolhaSerie").value
+    let cursoUsuario = document.getElementById("escolhaCurso").value
 
-    for(let id of INPUTS){
-        chave = id.slice(5)
-        chave = chave.toLowerCase()
-        informacoesDoUSuario[chave] = document.getElementById(id).value 
+    let informacoesDoUSuario = {
+        "nome": nomeUsuario,
+        "email": emailUsuario,
+        "matricula": matriculaUsuario,
+        "CPF": cpfUsuario,
+        "senha": senhaUsuario,
+        "confirmacaoDaSenha": confirmacaoSenhaUsuario,
+        "turno": turnoUsuario,
+        "serie": serieUsuario,
+        "curso": cursoUsuario
+
     }
     return informacoesDoUSuario
 }
 
-function cadastrarNovoUsuario(){
+function cadastrarNovoUsuario(event){
+
+    //Bloqueia que a página reinicie ao clicar no botão
+    event.preventDefault()
 
     let infosUsuario = pegarInformacoesDoUsuario()
 
+    let valido = Validacao.Geral(infosUsuario)
+    if (valido){
     //Esse bloco para baixo deverá passar pelas verificações
-    let novoUsuario = new Usuario(
-        infosUsuario["nome"],
-        infosUsuario["email"],
-        infosUsuario["matricula"],
-        infosUsuario["cpf"],
-        infosUsuario["senha"]
-    )
+      
+        let novoUsuario = new Usuario(
+            infosUsuario["nome"],
+            infosUsuario["email"],
+            infosUsuario["matricula"],
+            infosUsuario["CPF"],
+            infosUsuario["senha"],
+            infosUsuario["turno"],
+            infosUsuario["serie"],
+            infosUsuario["curso"]
+        )
         
     listaDeUsuarios[novoUsuario.matricula] = novoUsuario
 
     localStorage.setItem("listaDeUsuarios",JSON.stringify(listaDeUsuarios))
 
     window.location.href = '../login/login.html'
+        
     //Direciona para info ao efetuar cadastro
+
+    } 
     
 }
 
