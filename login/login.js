@@ -22,7 +22,10 @@ function verificarLogin(event){
 
 function direcionar(){
 
-    if(verificarLogin()){
+    if(verificarLogin(event)){
+
+        localStorage.setItem("usuarioLogado",JSON.stringify(listaDeUsuarios[matricula]))
+
         window.location.href = "../info/info.html"
     }
 
