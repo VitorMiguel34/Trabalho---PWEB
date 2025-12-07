@@ -4,7 +4,7 @@ const MATRICULA = localStorage.getItem("matricula")
 let listaDeUsuarios = JSON.parse(localStorage.getItem("listaDeUsuarios"))
 
 //Objeto com os dados do usuario, mas sem os metodos!!!
-let dadosUsuario = JSON.parse(localStorage.getItem("dadosDoUsuario")) || listaDeUsuarios[MATRICULA]
+let dadosUsuario = listaDeUsuarios[MATRICULA]
 
 const USUARIO = new Usuario(dadosUsuario)
 
@@ -52,4 +52,5 @@ function carregarInformacoesDoUsuario(){
 
 carregarInformacoesDoUsuario()
 carregarNotasDoUsuario()
-localStorage.setItem("dadosDoUsuario",JSON.stringify(USUARIO));
+listaDeUsuarios[MATRICULA] = USUARIO
+localStorage.setItem("listaDeUsuarios",JSON.stringify(listaDeUsuarios));
