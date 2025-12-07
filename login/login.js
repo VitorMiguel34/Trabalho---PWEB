@@ -18,9 +18,13 @@ function verificarLogin(){
 
 function direcionar(event){
     if(verificarLogin()){
+
         event.preventDefault()
+
         let matricula = document.getElementById('matricula').value
+
         localStorage.setItem("matricula",matricula)
+        
         window.location.href = "../info/info.html"
     }
 
