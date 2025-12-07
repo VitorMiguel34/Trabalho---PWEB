@@ -8,9 +8,24 @@ let dadosUsuario = JSON.parse(localStorage.getItem("dadosDoUsuario")) || listaDe
 
 const USUARIO = new Usuario(dadosUsuario)
 
+function carregarSituacaoDaMateria(media,materia){
+    let caixaSituacaoDaMateria = document.getElementById(`situacao-${materia}`)
+    let corDoFundo = (media >= 6) ? "green":"red"
+    let texto = (media >= 6) ? "Aprovado": "Reprovado"
+    caixaSituacaoDaMateria.style.backgroundColor = corDoFundo
+    caixaSituacaoDaMateria.innerText = texto
+}
+
+function carregarMediaDaMateria(media,materia){
+    let caixaMediaDaMateria = document.getElementById(`media-${materia}`)
+    let corDoTexto = (media >= 6) ? "green": "red"
+    caixaMediaDaMateria.style.color = corDoTexto
+    caixaMediaDaMateria.innerText = media
+}
+
 function carregarNotasDoUsuario(){
     let materiasDoUsuario = USUARIO.boletim.buscarMaterias()
-    let caixasNotas, caixaDaMedia, nota, notasDaMateria, mediaDaMateria;
+    let caixasNotas, nota, notasDaMateria, mediaDaMateria;
 
     for(let materia of materiasDoUsuario){
         caixasNotas = document.getElementsByClassName(`nota-${materia}`)
@@ -18,19 +33,13 @@ function carregarNotasDoUsuario(){
 
         for(let indiceNota in notasDaMateria){
             nota = notasDaMateria[indiceNota]
-            caixasNotas[indiceNota].innerText = nota 
+            caixasNotas[indiceNota].innerText = nota.toFixed(2)
         }
-        mediaDaMateria = USUARIO.boletim.calcularMediaDaMateria(materia)
-        caixaDaMedia = document.getElementById(`media-${materia}`)
-
-        if(mediaDaMateria >= 6){
-            caixaDaMedia.style.color = "green"
+        mediaDaMateria = USUARIO.boletim.calcularMediaDaMateria(materia).toFixed(2)
+        if(notasDaMateria.length === 3){
+            carregarMediaDaMateria(mediaDaMateria, materia)
+            carregarSituacaoDaMateria(mediaDaMateria, materia)
         }
-        else{
-            caixaDaMedia.style.color = "red"
-        }
-
-        caixaDaMedia.innerText = mediaDaMateria.toFixed(2)
     }
 }
 
