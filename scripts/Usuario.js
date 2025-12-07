@@ -1,17 +1,18 @@
 import Boletim from './Boletim.js'
 
 export default class Usuario{
-
-    constructor(nome, email, matricula, cpf, senha, turma){
-        this.nome = nome
-        this.email = email
-        this.matricula = matricula
-        
-        this.cpf = cpf
-        this.senha = senha
-        
-        this.notas = []
-        this.turma = turma
-        this.boletim = new Boletim()
+    constructor(informacoesDoUsuario){
+        this.nome = informacoesDoUsuario.nome
+        this.email = informacoesDoUsuario.email
+        this.matricula = informacoesDoUsuario.matricula
+        this.cpf = informacoesDoUsuario.CPF
+        this.senha = informacoesDoUsuario.senha
+        this.turma = informacoesDoUsuario.turma
+        try{
+            this.boletim = new Boletim(informacoesDoUsuario.boletim.notas)
+        }
+        catch{
+            this.boletim = new Boletim()
+        }
     }
 }

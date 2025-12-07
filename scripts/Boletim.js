@@ -1,32 +1,46 @@
 export default class Boletim{
-    constructor(){
-        this.notas = new Map()
-        this.notas.set("matematica",[])
-        this.notas.set("portugues",[])
-        this.notas.set("fisica",[])
+    constructor(boletimDoUsuario = null){
+        if(boletimDoUsuario === null){
+            this.notas = {
+                "portugues": [],
+                "matematica": [],
+                "fisica": [],
+            }  
+        }
+        else{
+            this.notas = {}
+            for(let materia of Object.keys(boletimDoUsuario)){
+                this.notas[materia] = boletimDoUsuario[materia]
+            }
+        }
+
     }
 
     adicionarNotaDaMateria(nota,materia){
-        let notas = this.notas.get(materia)
+        let notas = this.notas[materia]
         notas.push(nota)
-        this.notas.set(materia, notas)
+        this.notas[materia] = notas
+    }
+
+    calcularMediaDaMateria(materia){
+        let notasDaMateria = this.buscarNotasDaMateria(materia)
+        if(notasDaMateria.length === 0){
+            return 0
+        }
+
+        let somaNotas = 0
+        for(let nota of notasDaMateria){
+            somaNotas += nota
+        }
+        let media = somaNotas/3
+        return media
     }
 
     buscarNotasDaMateria(materia){
-        return this.notas.get(materia)
+        return this.notas[materia]
     }
 
     buscarMaterias(){
-        return this.notas.keys()
-    }
-    
-    calcularMediaDaMateria(materia){
-        let notasDaMateria = this.notas.get(materia)
-        let somaNotas = 0
-        for(let nota of notasDaMateria){
-            somaNotas += 3
-        }
-        let media = somaNotas/notasDaMateria.length
-        return media
+        return Object.keys(this.notas)
     }
 }

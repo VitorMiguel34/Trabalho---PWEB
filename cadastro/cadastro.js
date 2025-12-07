@@ -34,24 +34,11 @@ function cadastrarNovoUsuario(event){
 
     let valido = Validacao.Geral(infosUsuario)
     if (valido){
-    //Esse bloco para baixo deverá passar pelas verificações
-      
-        let novoUsuario = new Usuario(
-            infosUsuario["nome"],
-            infosUsuario["email"],
-            infosUsuario["matricula"],
-            infosUsuario["CPF"],
-            infosUsuario["senha"],
-            infosUsuario['turma']
-        )
-        
-    listaDeUsuarios[novoUsuario.matricula] = novoUsuario
-
-    localStorage.setItem("listaDeUsuarios",JSON.stringify(listaDeUsuarios))
-
-    window.location.href = '../login/login.html'
-        
-    //Direciona para info ao efetuar cadastro
+        let novoUsuario = new Usuario(infosUsuario)
+        listaDeUsuarios[novoUsuario.matricula] = novoUsuario
+        localStorage.setItem("listaDeUsuarios",JSON.stringify(listaDeUsuarios))
+        window.location.href = '../login/login.html'
+        //Direciona para info ao efetuar cadastro
     } 
     
 }
