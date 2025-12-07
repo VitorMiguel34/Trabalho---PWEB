@@ -13,7 +13,6 @@ function verificarLogin(){
         return false
     }
     return true
-
 }
 
 function direcionar(event){
