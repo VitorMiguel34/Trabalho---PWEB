@@ -1,12 +1,8 @@
+let listaDeUsuarios = JSON.parse(localStorage.getItem("listaDeUsuarios")) || {};
 
-const listaDeUsuarios = JSON.parse(localStorage.getItem("listaDeUsuarios")) || {};
-
-function verificarLogin(event){
-
+function verificarLogin(){
     let matricula = document.getElementById('matricula').value
     let senha = document.getElementById('senha').value
-
-    event.preventDefault(event)
 
     if(listaDeUsuarios[matricula] === undefined){
         alert('Não há usuário com essa matrícula!')
@@ -20,12 +16,11 @@ function verificarLogin(event){
 
 }
 
-function direcionar(){
-
-    if(verificarLogin(event)){
-
-        localStorage.setItem("usuarioLogado",JSON.stringify(listaDeUsuarios[matricula]))
-
+function direcionar(event){
+    if(verificarLogin()){
+        event.preventDefault()
+        let matricula = document.getElementById('matricula').value
+        localStorage.setItem("matricula",matricula)
         window.location.href = "../info/info.html"
     }
 
