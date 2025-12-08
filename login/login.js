@@ -24,7 +24,7 @@ function verificarLogin(){
             alert('Não há professor com esse usuário!')
             return false
         }
-        if((listaDeAlunos[identificador].senha != senha)){
+        if((listaDeProfessores[identificador].senha != senha)){
             alert('Senha incorreta!')
             return false
         }
@@ -58,4 +58,52 @@ function direcionar(event){
 addEventListener('DOMContentLoaded', () => {
     let botaoLogin = document.getElementById('botaoLogin')
     botaoLogin.addEventListener('click', direcionar)
+
+    let botaoVoltar = document.getElementById("botaoVoltar")
+    botaoVoltar.addEventListener('click',voltarParaEscolha)
+
+    let listaDeBotaoAvancarLogin = document.getElementsByClassName("botaoAvancarLogin")
+    for(let botao of listaDeBotaoAvancarLogin){
+        botao.addEventListener('click',avancarParaLogin)
+    }
 })
+
+const telaEscolha = document.getElementById('tela-escolha');
+const telaFormulario = document.getElementById('tela-formulario');
+
+const inputIdentificador = document.getElementById('identificador');
+const labelIdentificacao = document.getElementById('label-identificacao');
+const titulo = document.getElementById('titulo-dinamico');
+
+function avancarParaLogin(event) {
+    const botaoDeLoginClicado = event.currentTarget
+    let tipo = botaoDeLoginClicado.id
+
+    telaEscolha.classList.add('d-none');
+
+    localStorage.setItem('escolhaDeLogin', tipo)
+
+    telaFormulario.classList.remove('d-none');
+    telaFormulario.classList.add('fade-in');
+
+    if (tipo === 'aluno') {
+        titulo.innerText = "Login Aluno";
+        labelIdentificacao.innerText = "Matrícula";
+        inputIdentificador.placeholder = "Digite sua matrícula";
+        inputIdentificador.setAttribute('maxlength', '10');
+    } else {
+        titulo.innerText = "Login Professor";
+        labelIdentificacao.innerText = "Usuário";
+        inputIdentificador.placeholder = "Digite seu usuário";
+        inputIdentificador.removeAttribute('maxlength');
+    }
+}
+
+function voltarParaEscolha() {
+    telaFormulario.classList.add('d-none');
+    telaEscolha.classList.remove('d-none');
+    telaEscolha.classList.add('fade-in');
+    
+    inputIdentificador.value = '';
+    document.getElementById('senha').value = '';
+}
