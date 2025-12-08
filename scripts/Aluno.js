@@ -1,6 +1,6 @@
 import Boletim from './Boletim.js'
 
-export default class Usuario{
+export default class Aluno{
     
     constructor(informacoesDoUsuario){
 
