@@ -71,6 +71,10 @@ function atualizarBoletimDoALuno(event){
         alert("A nota deve estar entre 0 e 10")
         return null
     }
+    if(materia === ''){
+        alert('Você deve escolher uma matéria!')
+        return null
+    }
     
     let matriculaAluno = document.getElementById("lancarNotaModal").getAttribute("data-matricula")
     let dadosDoAluno = listaDeAlunos[matriculaAluno]
@@ -88,8 +92,12 @@ function atualizarBoletimDoALuno(event){
 
         //Fecha o card manualmente usando funções do bootstrap, apenas quando a nota é válida
         const elementoModal = document.getElementById('lancarNotaModal'); 
-        const modal = bootstrap.Modal.getOrCreateInstance(elementoModal);
+        const modal = window.bootstrap.Modal.getOrCreateInstance(elementoModal);
         modal.hide();
+
+        //zera a caixa de input
+        let inputNota = document.getElementById('inputNota')
+        inputNota.value = 0
 
     }    
 }
