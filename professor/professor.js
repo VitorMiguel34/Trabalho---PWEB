@@ -1,6 +1,6 @@
-import Usuario from '../scripts/Usuario.js'
+import Aluno from '../scripts/Aluno.js';
 
-let listaDeAlunos = JSON.parse(localStorage.getItem("listaDeUsuarios"))
+let listaDeAlunos = JSON.parse(localStorage.getItem("listaDeAlunos"))
 
 function carregarListaDeAlunos(){
     const lista = document.getElementById("lista-de-alunos")
@@ -37,7 +37,7 @@ function carregarDadosDoAlunoNoModal(event){
     tituloDoModal.textContent = `Lançar Nota para ${nomeAluno}`;
 
     let dadosAluno= listaDeAlunos[matriculaAluno]
-    const aluno = new Usuario(dadosAluno)
+    const aluno = new Aluno(dadosAluno)
     const select = document.getElementById("materiaSelect")
     select.innerHTML = "<option selected disabled value=''>Selecione...</option>"
     
@@ -60,7 +60,7 @@ function atualizarBoletimDoALuno(){
     
     let matriculaAluno = document.getElementById("lancarNotaModal").getAttribute("data-matricula")
     let dadosDoAluno = listaDeAlunos[matriculaAluno]
-    const aluno = new Usuario(dadosDoAluno)
+    const aluno = new Aluno(dadosDoAluno)
 
     let notasDaMateria = aluno.boletim.buscarNotasDaMateria(materia)
     if(notasDaMateria.length == 3){

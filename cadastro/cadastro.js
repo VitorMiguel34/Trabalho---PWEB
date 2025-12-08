@@ -1,7 +1,7 @@
-import Usuario from '../scripts/Usuario.js'
+import Aluno from '../scripts/Aluno.js'
 import Validacao from '../scripts/Validacao.js'
 
-let listaDeUsuarios = JSON.parse(localStorage.getItem("listaDeUsuarios")) || {}
+let listaDeAlunos = JSON.parse(localStorage.getItem("listaDeAlunos")) || {}
 
 function pegarInformacoesDoUsuario(){
 
@@ -35,11 +35,11 @@ function cadastrarNovoUsuario(event){
     let valido = Validacao.Geral(infosUsuario)
     if (valido){
 
-        let novoUsuario = new Usuario(infosUsuario)
+        let novoUsuario = new Aluno(infosUsuario)
 
-        listaDeUsuarios[novoUsuario.matricula] = novoUsuario
+        listaDeAlunos[novoUsuario.matricula] = novoUsuario
 
-        localStorage.setItem("listaDeUsuarios",JSON.stringify(listaDeUsuarios))
+        localStorage.setItem("listaDeAlunos",JSON.stringify(listaDeAlunos))
         
         window.location.href = '../login/login.html'
         //Direciona para info ao efetuar cadastro

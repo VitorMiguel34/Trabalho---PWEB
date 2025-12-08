@@ -1,30 +1,56 @@
-let listaDeUsuarios = JSON.parse(localStorage.getItem("listaDeUsuarios")) || {};
+let listaDeAlunos = JSON.parse(localStorage.getItem("listaDeAlunos")) || {};
+let listaDeProfessores = JSON.parse(localStorage.getItem("listaDeProfessores")) || {};
 
 function verificarLogin(){
-    let matricula = document.getElementById('matricula').value
+    let identificador = document.getElementById('identificador').value
     let senha = document.getElementById('senha').value
+    let tipoDeIdentificador = localStorage.getItem("escolhaDeLogin")
 
-    if(listaDeUsuarios[matricula] === undefined){
-        alert('Não há usuário com essa matrícula!')
-        return false
+    if (tipoDeIdentificador === 'aluno'){ 
+
+        if(listaDeAlunos[identificador] === undefined){
+            alert('Não há aluno com essa matrícula!')
+            return false
+        }
+        if((listaDeAlunos[identificador].senha != senha)){
+            alert('Senha incorreta!')
+            return false
+        }
+        return 'aluno'
+
+    } else {
+
+        if(listaDeProfessores[identificador] === undefined){
+            alert('Não há professor com esse usuário!')
+            return false
+        }
+        if((listaDeAlunos[identificador].senha != senha)){
+            alert('Senha incorreta!')
+            return false
+        }
+        return 'professor'
+
     }
-    if((listaDeUsuarios[matricula].senha != senha)){
-        alert('Senha incorreta!')
-        return false
-    }
-    return true
 }
 
 function direcionar(event){
-    if(verificarLogin()){
 
-        event.preventDefault()
+    event.preventDefault()
 
-        let matricula = document.getElementById('matricula').value
+    let matricula = document.getElementById('identificador').value
 
-        localStorage.setItem("matricula",matricula)
+    let condição = verificarLogin()
+
+    if(condição === 'aluno'){
         
         window.location.href = "../info/info.html"
+        localStorage.setItem("matricula",matricula)
+
+    } else if (condição === 'professor'){
+        
+        window.location.href = "../professor/professor.html"
+        localStorage.setItem("matricula",matricula)
+
     }
 
 }
