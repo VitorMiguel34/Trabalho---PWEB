@@ -4,6 +4,17 @@ let listaDeAlunos = JSON.parse(localStorage.getItem("listaDeAlunos"))
 
 function carregarListaDeAlunos(){
     const lista = document.getElementById("lista-de-alunos")
+    lista.innerHTML = ""
+    if(Object.keys(listaDeAlunos).length === 0){
+        lista.innerHTML += `
+            <div class="container mt-4">
+                <div class="alert alert-info" role="alert">
+                    <h4 class="alert-heading">🚫 Lista Vazia!</h4>
+                    <p>Não há alunos matriculados ou disponíveis nesta lista no momento.</p>
+                </div>
+            </div>`
+        return null
+    }
     let aluno, caixaAluno;
     for(let matriculaDoAluno of Object.keys(listaDeAlunos)){
         aluno = listaDeAlunos[matriculaDoAluno]
@@ -69,7 +80,7 @@ function atualizarBoletimDoALuno(){
     else{
         aluno.boletim.adicionarNotaDaMateria(nota,materia)
         listaDeAlunos[matriculaAluno] = aluno 
-        localStorage.setItem("listaDeUsuarios",JSON.stringify(listaDeAlunos))
+        localStorage.setItem("listaDeAlunos",JSON.stringify(listaDeAlunos))
         alert("Nota lançada!")
     }
     

@@ -30,7 +30,6 @@ function carregarNotasDoUsuario(){
     for(let materia of materiasDoUsuario){
         caixasNotas = document.getElementsByClassName(`nota-${materia}`)
         notasDaMateria = USUARIO.boletim.buscarNotasDaMateria(materia)
-
         for(let indiceNota in notasDaMateria){
             nota = notasDaMateria[indiceNota]
             caixasNotas[indiceNota].innerText = nota.toFixed(2)
