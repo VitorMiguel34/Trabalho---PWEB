@@ -1,12 +1,12 @@
-import Usuario from '../scripts/Usuario.js'
+import Aluno from '../scripts/Aluno.js'
 
 const MATRICULA = localStorage.getItem("matricula") 
-let listaDeUsuarios = JSON.parse(localStorage.getItem("listaDeUsuarios"))
+let listaDeAlunos = JSON.parse(localStorage.getItem("listaDeAlunos"))
 
 //Objeto com os dados do usuario, mas sem os metodos!!!
-let dadosUsuario = listaDeUsuarios[MATRICULA]
+let dadosUsuario = listaDeAlunos[MATRICULA]
 
-const USUARIO = new Usuario(dadosUsuario)
+const USUARIO = new Aluno(dadosUsuario)
 
 function carregarSituacaoDaMateria(media,materia){
     let caixaSituacaoDaMateria = document.getElementById(`situacao-${materia}`)
@@ -52,5 +52,5 @@ function carregarInformacoesDoUsuario(){
 
 carregarInformacoesDoUsuario()
 carregarNotasDoUsuario()
-listaDeUsuarios[MATRICULA] = USUARIO
-localStorage.setItem("listaDeUsuarios",JSON.stringify(listaDeUsuarios));
+listaDeAlunos[MATRICULA] = USUARIO
+localStorage.setItem("listaDeAlunos",JSON.stringify(listaDeAlunos));
