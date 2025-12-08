@@ -27,7 +27,7 @@ function carregarListaDeAlunos(){
                 <div class="col-4 text-end">
                     <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#lancarNotaModal"
                     data-matricula="${aluno.matricula}"
-                    data-nome=${aluno.nome}>
+                    data-nome='${aluno.nome}'>
                         <i class="bi bi-pencil-fill me-1"></i> Lançar Nota
                     </button>
                 </div>
@@ -61,11 +61,18 @@ function carregarDadosDoAlunoNoModal(event){
     document.getElementById("lancarNotaModal").setAttribute("data-matricula",aluno.matricula)
 }
 
-function atualizarBoletimDoALuno(){
+function atualizarBoletimDoALuno(event){
+    //previne que a página recarregue ao dar erro na validação da nota
+    event.preventDefault()
+
     let materia = document.getElementById("materiaSelect").value 
     let nota = parseFloat(document.getElementById("inputNota").value)
     if(nota < 0 || nota > 10){
         alert("A nota deve estar entre 0 e 10")
+        return null
+    }
+    if(materia === ''){
+        alert('Você deve escolher uma matéria!')
         return null
     }
     
@@ -82,8 +89,17 @@ function atualizarBoletimDoALuno(){
         listaDeAlunos[matriculaAluno] = aluno 
         localStorage.setItem("listaDeAlunos",JSON.stringify(listaDeAlunos))
         alert("Nota lançada!")
-    }
-    
+
+        //Fecha o card manualmente usando funções do bootstrap, apenas quando a nota é válida
+        const elementoModal = document.getElementById('lancarNotaModal'); 
+        const modal = window.bootstrap.Modal.getOrCreateInstance(elementoModal);
+        modal.hide();
+
+        //zera a caixa de input
+        let inputNota = document.getElementById('inputNota')
+        inputNota.value = 0
+
+    }    
 }
 
 document.addEventListener('DOMContentLoaded', () => {
