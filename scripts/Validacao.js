@@ -19,8 +19,8 @@ export default class Validacao {
             alert("O nome do aluno deve ter iniciais maiúsculas!");
             return false;
         }
-        if (!this.ConfirmacaoDaSenha(info.senha, info.confirmacaoDaSenha)) {
-            alert("As senhas devem ser iguais!");
+        if (!this.Email(info.email)) {
+            alert("O email deve possuir um domínio válido!");
             return false;
         }
         if (!this.Matricula(info.matricula)) {
@@ -30,12 +30,11 @@ export default class Validacao {
             alert("O CPF deve ter 11 dígitos numéricos!");
             return false;
         }
-        if (!this.Email(info.email)) {
-            alert("O email deve possuir um domínio válido!");
-            return false;
-        }
         if (!this.Turma(info.turma)) {
             alert("A turma deve seguir o padrão [curso][turno][série]!");
+            return false;
+        }
+        if (!this.ConfirmacaoDaSenha(info.senha, info.confirmacaoDaSenha)) {
             return false;
         }
 
@@ -53,15 +52,26 @@ export default class Validacao {
             return false;
         }
         if (!this.ConfirmacaoDaSenha(info.senha, info.confirmacaoDaSenha)) {
-            alert("As senhas devem coincidir!");
             return false;
         }
 
         return true;
     }
 
-    static ConfirmacaoDaSenha(senha, confirmacao) {
-        return senha.trim() === confirmacao.trim();
+    static ConfirmacaoDaSenha(senha, confirmacaoSenha) {
+        if(senha.trim().length === 0){
+            alert("Preencha a senha!")
+            return false
+        }
+        if(confirmacaoSenha.trim().length === 0){
+            alert("Preencha a confirmaçāo da senha!")
+            return false
+        }
+        if(senha.trim() !== confirmacaoSenha.trim()){
+            alert("A senha e a confirmaçāo devem ser iguais!")
+            return false
+        }
+        return true
     }
 
     static Matricula(matricula) {
@@ -73,7 +83,7 @@ export default class Validacao {
             return false
         }
         if(matricula.slice(0,3) != "202"){
-            alert("A matricula deve começar com 202!")
+            alert("A matricula deve começar com um ano entre 2020 e 2029!")
             return false
         }
         if(matricula.length !== 10){
