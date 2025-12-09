@@ -1,20 +1,87 @@
 body {
+    background: #f2f6fc;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    background-color: #f8f9fa; 
+    padding: 20px;
+    font-family: "Segoe UI", sans-serif;
 }
+
+
 .cadastro-container {
-    max-width: 600px;
-    padding: 30px;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-    border-radius: 0.5rem;
-    margin: 20px 0;
+    width: 100%;
+    max-width: 520px;
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+    animation: fadeIn 0.5s ease;
 }
-#botaoCadastro{
-    display: block;
-    margin: 0 auto;          
-    width: auto !important; 
-    min-width: 50%;
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+h1, h2 {
+    letter-spacing: -0.5px;
+}
+
+/* ======= BOTÕES ======= */
+.botaoEscolha {
+    font-size: 1.1rem;
+    padding: 12px;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.botaoEscolha:hover {
+    transform: scale(1.03);
+}
+
+/* Botões de envio */
+#botaoCadastroAluno,
+#botaoCadastroProfessor {
+    padding: 12px;
+    font-size: 1.05rem;
+    border-radius: 10px;
+}
+
+
+form label {
+    font-weight: 600;
+    color: #333;
+}
+
+form input {
+    padding: 10px;
+    border-radius: 8px;
+}
+
+form input:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.25);
+}
+
+
+form p a {
+    text-decoration: none;
+    font-weight: 600;
+}
+
+form p a:hover {
+    text-decoration: underline;
+}
+
+
+@media (max-width: 500px) {
+    .cadastro-container {
+        padding: 25px;
+    }
+
+    h1, h2 {
+        font-size: 1.4rem;
+    }
 }
