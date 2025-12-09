@@ -22,6 +22,10 @@ export default class Validacao{
     static Nome(nomeUsuario){
 
         let nomevalido = true
+
+        if (nomeUsuario === ''){
+            return false
+        }
         for( let nome of nomeUsuario.split(' ')){
             if (!(( nome.trim() == nome) && ( nome[0].toUpperCase() == nome[0]))){
                 nomevalido = false
