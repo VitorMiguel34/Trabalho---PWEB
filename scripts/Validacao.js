@@ -101,7 +101,10 @@ export default class Validacao {
         let nomevalido = true;
 
         for (let nome of nomeUsuario.split(" ")) {
-            if (!((nome.trim() == nome) && (nome[0].toUpperCase() == nome[0]))) {
+            if(!nome){
+                continue
+            }
+            if (nome[0].toUpperCase() !== nome[0]) {
                 nomevalido = false;
             }
         }
