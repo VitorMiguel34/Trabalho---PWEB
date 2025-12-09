@@ -1,6 +1,6 @@
 import Aluno from '../scripts/Aluno.js';
 
-let listaDeAlunos = JSON.parse(localStorage.getItem("listaDeAlunos"))
+let listaDeAlunos = JSON.parse(localStorage.getItem("listaDeAlunos")) || {}
 
 function carregarListaDeAlunos(){
     const lista = document.getElementById("lista-de-alunos")
