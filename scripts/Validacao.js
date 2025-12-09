@@ -23,7 +23,7 @@ export default class Validacao{
 
         let nomevalido = true
 
-        if (nomeUsuario === ''){
+        if (nomeUsuario.trim().length === 0){
             return false
         }
         for( let nome of nomeUsuario.split(' ')){
