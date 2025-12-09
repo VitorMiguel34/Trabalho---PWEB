@@ -2,9 +2,18 @@ export default class Boletim{
     constructor(boletimDoUsuario = null){
         if(boletimDoUsuario === null){
             this.notas = {
-                "portugues": [],
-                "matematica": [],
-                "fisica": [],
+                "Artes": [],
+                "Biologia": [],
+                "Educaçāo Física": [],
+                "Filosofia": [],
+                "Física": [],
+                "Geogragia": [],
+                "História": [],
+                "Lingua Inglesa": [],
+                "Lingua portuguesa": [],
+                "Matemática": [],
+                "Química": [],
+                "Sociologia": []   
             }  
         }
         else{
