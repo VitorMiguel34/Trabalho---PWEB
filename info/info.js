@@ -8,6 +8,21 @@ let dadosUsuario = listaDeAlunos[MATRICULA]
 
 const USUARIO = new Aluno(dadosUsuario)
 
+function carregarBoletim(){
+    let boletim = document.getElementById("boletim")
+    for(let materia of USUARIO.boletim.buscarMaterias()){
+        boletim.innerHTML += `
+            <tr>
+                <th scope="row">${materia}</th>
+                <td class="nota-${materia} text-center"></td>
+                <td class="nota-${materia} text-center"></td>
+                <td class="nota${materia} text-center"></td>
+                <td class="text-center fw-bold" id="media-${materia}"></td>
+                <td class="text-center"><span class="badge rounded-pill fw-normal" id="situacao-${materia}"></span></td>
+            </tr>`
+    }
+}
+
 function carregarSituacaoDaMateria(media,materia){
     let caixaSituacaoDaMateria = document.getElementById(`situacao-${materia}`)
     let corDoFundo = (media >= 6) ? "green":"red"
@@ -50,6 +65,5 @@ function carregarInformacoesDoUsuario(){
 }
 
 carregarInformacoesDoUsuario()
+carregarBoletim()
 carregarNotasDoUsuario()
-listaDeAlunos[MATRICULA] = USUARIO
-localStorage.setItem("listaDeAlunos",JSON.stringify(listaDeAlunos));

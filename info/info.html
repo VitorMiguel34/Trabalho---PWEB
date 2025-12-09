@@ -8,14 +8,13 @@
     <link rel="stylesheet" href="info.css">
 </head>
 <body>
-        <!-- Navbar com título e botão de Sair (estilizado e simples) -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm py-3">
         <div class="container-fluid">
-            <!-- Título do Portal alinhado à esquerda -->
+
             <p class="navbar-brand mb-0 h1 text-primary fw-bolder fs-4">
                 <i class="bi bi-mortarboard-fill me-2 text-warning"></i> Portal do Aluno
             </p>
-            <!-- Botão de Sair alinhado à direita -->
+
             <div class="d-flex me-2">
                 <a href="../index.html" class="btn btn-sm btn-outline-danger">
                     <i class="bi bi-box-arrow-right"></i> Sair
@@ -24,17 +23,13 @@
         </div>
     </nav>
 
-    <!-- Card de Informações do Aluno -->
     <div class="card shadow-sm mb-4">
-        <!-- Cabeçalho do Card -->
         <div class="card-header bg-primary text-white fw-bold">
             <i class="bi bi-person-badge me-2"></i> Informações Cadastrais
         </div>
         
-        <!-- Corpo do Card -->
         <div class="card-body">
             <div class="row">
-                <!-- Coluna 1: Nome e Matrícula -->
                 <div class="col-md-6 mb-3">
                     <p class="text-muted small mb-0">Nome Completo:</p>
                     <p id="nomeCompletoUsuario" class="fw-bold mb-0 text-dark"></p>
@@ -44,7 +39,6 @@
                     <p id="matriculaUsuario" class="fw-bold mb-0 text-dark"></p>
                 </div>
 
-                <!-- Coluna 2: Curso e Turma -->
                 <div class="col-md-6 mb-3 mb-md-0">
                     <p class="text-muted small mb-0">Email:</p>
                     <p id="emailUsuario" class="fw-bold mb-0 text-dark"></p>
@@ -76,33 +70,10 @@
                             <th scope="col" class="text-center">Situação</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Língua Portuguesa</th>
-                            <td class="nota-portugues text-center"></td>
-                            <td class="nota-portugues text-center"></td>
-                            <td class="nota-portugues text-center"></td>
-                            <td class="text-center fw-bold" id="media-portugues"></td>
-                            <td class="text-center"><span class="badge rounded-pill fw-normal" id="situacao-portugues"></span></td>
-                        </tr>
+                    <tbody id="boletim">
                         
-                        <tr>
-                            <th scope="row">Matemática</th>
-                            <td class="nota-matematica text-center"></td>
-                            <td class="nota-matematica text-center"></td>
-                            <td class="nota-matematica text-center"></td>
-                            <td class="text-center fw-bold" id="media-matematica"></td>
-                            <td class="text-center"><span class="badge rounded-pill fw-normal" id="situacao-matematica"></span></td>
-                        </tr>
-                        
-                        <tr>
-                            <th scope="row">Física</th>
-                            <td class="nota-fisica text-center"></td>
-                            <td class="nota-fisica text-center"></td>
-                            <td class="nota-fisica text-center"></td>
-                            <td class="text-center fw-bold" id="media-fisica"></td>
-                            <td class="text-center"><span class="badge rounded-pill fw-normal" id="situacao-fisica"></span></td>
-                        </tr>
+                        <!--BOLETIM DO ALUNO AQUI(CARREGADO COM JS)-->
+
                     </tbody>
                 </table>
             </div>
