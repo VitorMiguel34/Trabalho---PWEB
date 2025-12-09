@@ -58,7 +58,7 @@ export default class Validacao {
             alert("O email do professor deve ser válido!");
             return false;
         }
-        if (!info.matricula || info.matricula.trim().length < 4) {
+        if (!info.usuario || info.usuario.trim().length < 4) {
             alert("O usuário do professor deve ter pelo menos 4 caracteres!");
             return false;
         }

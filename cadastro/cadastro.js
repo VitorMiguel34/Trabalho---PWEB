@@ -49,7 +49,7 @@ function cadastrarAluno(event) {
         tipo: "aluno",
         nome: document.getElementById("inputNome").value,
         email: document.getElementById("inputEmail").value,
-        matricula: document.getElementById("inputMatricula").value,
+        usuario: document.getElementById("inputMatricula").value,
         CPF: document.getElementById("inputCPF").value,
         turma: document.getElementById("inputTurma").value,
         senha: document.getElementById("inputSenha").value,
@@ -59,7 +59,7 @@ function cadastrarAluno(event) {
     if (!Validacao.Geral(dados)) return;
 
     let novoAluno = new Aluno(dados);
-    listaDeAlunos[novoAluno.matricula] = novoAluno;
+    listaDeAlunos[novoAluno.usuario] = novoAluno;
 
     localStorage.setItem("listaDeAlunos", JSON.stringify(listaDeAlunos));
     window.location.href = "../login/login.html";
@@ -76,7 +76,7 @@ function cadastrarProfessor(event) {
         tipo: "professor",
         nome: "--",
         email: document.getElementById("inputProfessorEmail").value,
-        matricula: document.getElementById("inputProfessorUsuario").value,
+        usuario: document.getElementById("inputProfessorUsuario").value,
         CPF: "--",
         turma: "--",
         senha: document.getElementById("inputSenhaProf").value,
@@ -86,7 +86,7 @@ function cadastrarProfessor(event) {
     if (!Validacao.Geral(dados)) return;
 
     let novoProf = new Professor(dados);
-    listaDeProfessores[novoProf.matricula] = novoProf;
+    listaDeProfessores[dados.usuario] = novoProf;
 
     localStorage.setItem("listaDeProfessores", JSON.stringify(listaDeProfessores));
     window.location.href = "../login/login.html";
