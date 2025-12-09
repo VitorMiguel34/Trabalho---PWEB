@@ -1,8 +1,5 @@
 export default class Validacao {
 
-    // ---------------------------
-    // VALIDACAO GERAL
-    // ---------------------------
     static Geral(infoUsuario) {
 
         if (infoUsuario.tipo === "aluno") {
@@ -16,9 +13,6 @@ export default class Validacao {
         return false;
     }
 
-    // ---------------------------
-    // VALIDACAO DE ALUNO
-    // ---------------------------
     static ValidarAluno(info) {
 
         if (!this.Nome(info.nome)) {
@@ -30,7 +24,6 @@ export default class Validacao {
             return false;
         }
         if (!this.Matricula(info.matricula)) {
-            alert("A matrícula deve começar com 202 e ter 10 dígitos!");
             return false;
         }
         if (!this.CPF(info.CPF)) {
@@ -49,9 +42,6 @@ export default class Validacao {
         return true;
     }
 
-    // ---------------------------
-    // VALIDACAO DE PROFESSOR
-    // ---------------------------
     static ValidarProfessor(info) {
 
         if (!this.Email(info.email)) {
@@ -70,19 +60,31 @@ export default class Validacao {
         return true;
     }
 
-    // ---------------------------
-    // FUNÇÕES AUXILIARES
-    // ---------------------------
     static ConfirmacaoDaSenha(senha, confirmacao) {
         return senha.trim() === confirmacao.trim();
     }
 
     static Matricula(matricula) {
-        return (
-            matricula.length === 10 &&
-            matricula.slice(0, 3) === "202" &&
-            !isNaN(Number(matricula))
-        );
+        let listaDeAlunos = JSON.parse(localStorage.getItem("listaDeAlunos")) || {}
+        let matriculasExistentes = Object.keys(listaDeAlunos)
+        
+        if(isNaN(Number(matricula))){
+            alert("A matricula so pode ter numeros!")
+            return false
+        }
+        if(matricula.slice(0,3) != "202"){
+            alert("A matricula deve começar com 202!")
+            return false
+        }
+        if(matricula.length !== 10){
+            alert("A matricula deve ter 10 dígitos!")
+            return false
+        }
+        if(matriculasExistentes.includes(matricula)){
+            alert("Ja existe um aluno com essa matricula!")
+            return false
+        }
+        return true
     }
 
     static Nome(nomeUsuario) {

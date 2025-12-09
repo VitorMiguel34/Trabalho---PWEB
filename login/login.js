@@ -8,7 +8,7 @@ function verificarLogin(){
 
     if (tipoDeIdentificador === 'aluno'){ 
 
-        if(listaDeAlunos[identificador] === undefined){
+        if(!Object.keys(listaDeAlunos).includes(identificador)){
             alert('Não há aluno com essa matrícula!')
             return false
         }

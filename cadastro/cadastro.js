@@ -49,7 +49,7 @@ function cadastrarAluno(event) {
         tipo: "aluno",
         nome: document.getElementById("inputNome").value,
         email: document.getElementById("inputEmail").value,
-        usuario: document.getElementById("inputMatricula").value,
+        matricula: document.getElementById("inputMatricula").value,
         CPF: document.getElementById("inputCPF").value,
         turma: document.getElementById("inputTurma").value,
         senha: document.getElementById("inputSenha").value,
@@ -59,7 +59,7 @@ function cadastrarAluno(event) {
     if (!Validacao.Geral(dados)) return;
 
     let novoAluno = new Aluno(dados);
-    listaDeAlunos[novoAluno.usuario] = novoAluno;
+    listaDeAlunos[dados.matricula] = novoAluno;
 
     localStorage.setItem("listaDeAlunos", JSON.stringify(listaDeAlunos));
     window.location.href = "../login/login.html";

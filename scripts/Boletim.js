@@ -7,7 +7,7 @@ export default class Boletim{
                 "Educaçāo Física": [],
                 "Filosofia": [],
                 "Física": [],
-                "Geogragia": [],
+                "Geografia": [],
                 "História": [],
                 "Lingua Inglesa": [],
                 "Lingua portuguesa": [],
