@@ -1,53 +1,93 @@
-import Aluno from '../scripts/Aluno.js'
-import Validacao from '../scripts/Validacao.js'
+import Validacao from "../scripts/Validacao.js";
+import Aluno from "../scripts/Aluno.js";
+import Professor from "../scripts/Professor.js";
 
-let listaDeAlunos = JSON.parse(localStorage.getItem("listaDeAlunos")) || {}
+let listaDeAlunos = JSON.parse(localStorage.getItem("listaDeAlunos")) || {};
+let listaDeProfessores = JSON.parse(localStorage.getItem("listaDeProfessores")) || {};
 
-function pegarInformacoesDoUsuario(){
 
-    let nomeUsuario = document.getElementById("inputNome").value 
-    let emailUsuario = document.getElementById("inputEmail").value 
-    let matriculaUsuario = document.getElementById("inputMatricula").value 
-    let cpfUsuario = document.getElementById("inputCPF").value 
-    let senhaUsuario = document.getElementById("inputSenha").value 
-    let confirmacaoSenhaUsuario = document.getElementById("inputConfirmacaoSenha").value 
-    let turmaUsuario = document.getElementById('inputTurma').value
+// MANIPULAÇÃO DAS TELAS
 
-    let informacoesDoUsuario = {
-        "nome": nomeUsuario,
-        "email": emailUsuario,
-        "matricula": matriculaUsuario,
-        "CPF": cpfUsuario,
-        "senha": senhaUsuario,
-        "confirmacaoDaSenha": confirmacaoSenhaUsuario,
-        "turma": turmaUsuario
-    }
-    return informacoesDoUsuario
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const botaoAluno = document.getElementById("aluno");
+    const botaoProfessor = document.getElementById("professor");
+
+    const telaEscolha = document.getElementById("tela-escolha");
+    const formAluno = document.getElementById("form-aluno");
+    const formProfessor = document.getElementById("form-professor");
+
+    botaoAluno.addEventListener("click", () => {
+        localStorage.setItem("escolhaDeLogin", "aluno");
+        telaEscolha.classList.add("d-none");
+        formAluno.classList.remove("d-none");
+    });
+
+    botaoProfessor.addEventListener("click", () => {
+        localStorage.setItem("escolhaDeLogin", "professor");
+        telaEscolha.classList.add("d-none");
+        formProfessor.classList.remove("d-none");
+    });
+
+    // eventos de cadastro
+    document.getElementById("botaoCadastroAluno")
+        .addEventListener("click", cadastrarAluno);
+
+    document.getElementById("botaoCadastroProfessor")
+        .addEventListener("click", cadastrarProfessor);
+});
+
+
+// CADASTRO DE ALUNO
+
+
+function cadastrarAluno(event) {
+    event.preventDefault();
+
+    const dados = {
+        tipo: "aluno",
+        nome: document.getElementById("inputNome").value,
+        email: document.getElementById("inputEmail").value,
+        matricula: document.getElementById("inputMatricula").value,
+        CPF: document.getElementById("inputCPF").value,
+        turma: document.getElementById("inputTurma").value,
+        senha: document.getElementById("inputSenha").value,
+        confirmacaoDaSenha: document.getElementById("inputConfirmacaoSenha").value
+    };
+
+    if (!Validacao.Geral(dados)) return;
+
+    let novoAluno = new Aluno(dados);
+    listaDeAlunos[novoAluno.matricula] = novoAluno;
+
+    localStorage.setItem("listaDeAlunos", JSON.stringify(listaDeAlunos));
+    window.location.href = "../login/login.html";
 }
 
-function cadastrarNovoUsuario(event){
 
-    //Bloqueia que a página reinicie ao clicar no botão
-    event.preventDefault()
+// CADASTRO DE PROFESSOR
 
-    let infosUsuario = pegarInformacoesDoUsuario()
 
-    let valido = Validacao.Geral(infosUsuario)
-    if (valido){
+function cadastrarProfessor(event) {
+    event.preventDefault();
 
-        let novoUsuario = new Aluno(infosUsuario)
+    const dados = {
+        tipo: "professor",
+        nome: "--",
+        email: document.getElementById("inputProfessorEmail").value,
+        matricula: document.getElementById("inputProfessorUsuario").value,
+        CPF: "--",
+        turma: "--",
+        senha: document.getElementById("inputSenhaProf").value,
+        confirmacaoDaSenha: document.getElementById("inputConfirmacaoSenhaProf").value
+    };
 
-        listaDeAlunos[novoUsuario.matricula] = novoUsuario
+    if (!Validacao.Geral(dados)) return;
 
-        localStorage.setItem("listaDeAlunos",JSON.stringify(listaDeAlunos))
-        
-        window.location.href = '../login/login.html'
-        //Direciona para info ao efetuar cadastro
-    } 
-    
+    let novoProf = new Professor(dados);
+    listaDeProfessores[novoProf.matricula] = novoProf;
+
+    localStorage.setItem("listaDeProfessores", JSON.stringify(listaDeProfessores));
+    window.location.href = "../login/login.html";
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    const botaoCadastro = document.getElementById("botaoCadastro")
-    botaoCadastro.addEventListener("click", cadastrarNovoUsuario)  
-})
