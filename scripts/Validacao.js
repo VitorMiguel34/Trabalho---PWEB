@@ -1,8 +1,8 @@
 export default class Validacao {
 
-    // ---------------------------
+
     // VALIDACAO GERAL
-    // ---------------------------
+
     static Geral(infoUsuario) {
 
         if (infoUsuario.tipo === "aluno") {
@@ -16,9 +16,9 @@ export default class Validacao {
         return false;
     }
 
-    // ---------------------------
+
     // VALIDACAO DE ALUNO
-    // ---------------------------
+
     static ValidarAluno(info) {
 
         if (!this.Nome(info.nome)) {
@@ -49,9 +49,9 @@ export default class Validacao {
         return true;
     }
 
-    // ---------------------------
+
     // VALIDACAO DE PROFESSOR
-    // ---------------------------
+
     static ValidarProfessor(info) {
 
         if (!this.Email(info.email)) {
