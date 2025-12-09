@@ -16,7 +16,7 @@ function carregarBoletim(){
                 <th scope="row">${materia}</th>
                 <td class="nota-${materia} text-center"></td>
                 <td class="nota-${materia} text-center"></td>
-                <td class="nota${materia} text-center"></td>
+                <td class="nota-${materia} text-center"></td>
                 <td class="text-center fw-bold" id="media-${materia}"></td>
                 <td class="text-center"><span class="badge rounded-pill fw-normal" id="situacao-${materia}"></span></td>
             </tr>`
